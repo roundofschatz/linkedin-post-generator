@@ -26,7 +26,7 @@ import re
 import sys
 from pathlib import Path
 
-__version__ = "1.2.1"
+__version__ = "1.2.2"
 
 # Limits and targets. Each number is in references/platform.md, as a
 # finding with its source or in "The skill's own choices".

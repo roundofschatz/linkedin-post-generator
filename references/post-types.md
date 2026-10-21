@@ -22,7 +22,7 @@ The post's job is to get the right people to open the piece. It previews the arg
 - **The other route:** when the piece has a framework or findings that would fill slides, offer a document post that teaches them, in one line. Documents drew the most engagement in 2026 data; link posts drew the least.
 - **Close:** a specific question about the piece's subject that someone in the field can answer in a sentence.
 - **Length:** 1,300 to 1,900 characters, the same as a text post, since posts in that range did best in 2026 data. Spend the length on the argument, not on evidence.
-- When the user gives their own draft, keep their framing and terms. Fix the opening and cut what's vague; don't swap their words for the piece's or yours.
+- When the user gives their own draft, keep their tone of voice, framing and terms, and apply the posting tactics on top of it, as SKILL.md's Step 5 says.
 
 ## Text
 

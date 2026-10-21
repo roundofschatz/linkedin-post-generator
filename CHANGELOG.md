@@ -2,6 +2,13 @@
 
 Every change to this skill is logged here: what was added, changed or removed, and why. Nothing comes out without a line saying so. Newest first.
 
+## 1.2.2 · One tone rule, everywhere
+
+Why: 1.2.1's tone rule lives in SKILL.md, but `references/post-types.md` still told the skill to "cut what's vague" in a writer's own draft, which works against keeping their voice.
+
+- Changed: the share post's line on the writer's own draft now points to Step 5's tone rule: keep their tone, framing and terms, and apply the tactics on top.
+- Changed: the checker's version to 1.2.2.
+
 ## 1.2.1 · The writer's tone, built out with the tactics
 
 Why: on October 21, 2026, the owner rewrote a post the skill drafted. The rewrite was more human, and the skill's earlier drafts had flattened his voice. He ruled that the skill should match the tone of voice it receives, and build it out with the tactics a high-quality post needs, rather than replace it or leave it untouched.
