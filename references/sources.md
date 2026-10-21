@@ -8,7 +8,7 @@ A post is only as good as the reading behind it. Read the whole source before wr
 
 **A LinkedIn post or article.** These usually need a login, so ask the user to paste the text and say who wrote it. If the user wants to answer it, follow "Answering someone else's post" below.
 
-**An idea, opinion or question.** The user's words are the source. If they haven't said what made them think it, Step 3 of SKILL.md asks. A post built on an idea alone, with no case, number or decision behind it, is the kind LinkedIn cuts. If the idea is a question the user wants answered, answer it from what they give you and say where the answer needs a fact they'd have to supply.
+**An idea, opinion or question.** The user's words are the source. If they haven't said what made them think it, Step 3 of SKILL.md asks. A post built on an idea alone, with no case, number, decision or clear and arguable opinion behind it, is the kind LinkedIn shows less widely. If the idea is a question the user wants answered, answer it from what they give you and say where the answer needs a fact they'd have to supply.
 
 **An uploaded document (PDF, Word, slides, spreadsheet).** Read it with the file tools. For a long report, read the summary and the sections the user points to, and list the page or slide each fact comes from. For a spreadsheet, compute any figure from the rows; never estimate one by eye.
 
@@ -34,7 +34,7 @@ Keep a scratch list, out of the post:
 - Name the source in the post: the publisher, author or speaker. "A Fortune piece this week" is enough when it's true.
 - When pasted text doesn't say who wrote it, ask in the Step 3 message. If the user isn't there to answer, describe it truthfully without a name, like "an article on hashtags I read this week," and note in the notes that naming it would be better. Don't put a bracket in the middle of the post for it.
 - Quote at most one short line, under 15 words, in quotation marks, word for word. Put everything else in your own words.
-- Never let the post stand in for the source. A summary of someone else's article, with no view of the user's own, gives readers no reason to read the post and gives LinkedIn a reason to bury it.
+- Never let the post stand in for the source. A summary of someone else's article, with no view of the user's own, gives readers no reason to read the post and is the kind LinkedIn shows less widely.
 
 ## Answering someone else's post
 

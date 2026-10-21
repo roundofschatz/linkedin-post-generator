@@ -16,7 +16,8 @@ Their draft:
 - Opens on the paper's central point across all three industries.
 - Keeps the writer's own terms (customer, company and community), even where the paper words them differently.
 - Previews the argument and what the reader gets (the questions), and leaves the cases in the paper.
-- Runs 700 to 1,200 characters and passes `check_post.py --type share`.
+- Runs 1,300 to 1,900 characters and passes `check_post.py --type share`.
+- Tells the writer to remove the link-preview card, and offers a document post as the other route only if the paper has findings that would fill slides.
 
 ## What fails it
 

@@ -45,6 +45,9 @@ class Opening(unittest.TestCase):
     def test_mid_opening_warns(self):
         self.assertIn("P04", ids("a" * 160 + "\n\n" + PARA))
 
+    def test_fold_counts_across_lines(self):
+        self.assertIn("P04", ids("a" * 80 + "\n" + "b" * 80 + ".\n\n" + PARA))
+
     def test_greeting_blocks(self):
         for opener in ("Happy Monday, everyone!", "In today's market, brands struggle.",
                        "I've been thinking about onboarding.", "Thrilled to announce our new office."):
@@ -55,11 +58,17 @@ class Opening(unittest.TestCase):
 
 
 class Bait(unittest.TestCase):
-    def test_bait_blocks(self):
-        for line in ("Comment YES if you agree.", "Agree?", "Thoughts?", "Type 'GUIDE' below and I'll send it.",
-                     "Repost if this helped.", "Follow me for more.", "Tag someone who needs this.",
-                     "Who else has seen this?", "Drop a comment below."):
+    def test_named_bait_blocks(self):
+        for line in ("Comment YES if you agree.", "Type 'GUIDE' below and I'll send it.",
+                     "Like if you agree.", "Repost if this helped."):
             self.assertIn("P07", ids(PARA + "\n\n" + line), line)
+
+    def test_other_bait_warns(self):
+        for line in ("Agree?", "Thoughts?", "Follow me for more.", "Tag someone who needs this.",
+                     "Who else has seen this?", "Drop a comment below."):
+            found = ids(PARA + "\n\n" + line)
+            self.assertIn("P20", found, line)
+            self.assertNotIn("P07", found, line)
 
     def test_specific_question_passes(self):
         self.assertNotIn("P07", ids(PARA + "\n\nWhich would you fix first: equipment or access?"))
@@ -70,11 +79,8 @@ class Hashtags(unittest.TestCase):
         found = ids(good_post() + "\n\n#Onboarding #HRTech")
         self.assertFalse({"P08", "P09"} & found)
 
-    def test_three_warn(self):
-        self.assertIn("P09", ids(good_post() + "\n\n#A #B #C"))
-
-    def test_four_block(self):
-        self.assertIn("P08", ids(good_post() + "\n\n#A #B #C #D"))
+    def test_three_block(self):
+        self.assertIn("P08", ids(good_post() + "\n\n#A #B #C"))
 
     def test_inline_warns(self):
         self.assertIn("P09", ids("We fixed #onboarding in a week.\n\n" + PARA))
@@ -86,9 +92,13 @@ class Other(unittest.TestCase):
         self.assertIn("P10", ids(post))
         self.assertNotIn("P10", ids(post, link_ok=True))
 
-    def test_one_line_stack_warns(self):
-        post = "\n\n".join(f"Short line number {i}." for i in range(8))
-        self.assertIn("P11", ids(post))
+    def test_few_paragraphs_warn(self):
+        self.assertIn("P11", ids(PARA + "\n\n" + PARA))
+        self.assertNotIn("P11", ids(good_post()))
+
+    def test_bare_domain_counts_as_link(self):
+        self.assertIn("P10", ids(PARA + "\n\nRead it at basecollab.studio today."))
+        self.assertNotIn("P10", ids(PARA + "\n\nWe tried it, e.g. twice, in 2.5 weeks."))
 
     def test_arrow_bullets_warn(self):
         self.assertIn("P12", ids(PARA + "\n\n→ Faster laptops\n→ Earlier access"))
@@ -96,12 +106,9 @@ class Other(unittest.TestCase):
     def test_fancy_letters_block(self):
         self.assertIn("P13", ids("\U0001D5E7\U0001D5F6\U0001D600 matters.\n\n" + PARA))
 
-    def test_not_x_y_warns(self):
+    def test_not_x_y_blocks(self):
         self.assertIn("P14", ids(PARA + "\n\nIt's not about the laptop, it's about the first day."))
         self.assertIn("P14", ids(PARA + "\n\nThis is not just a fix, but a reset."))
-
-    def test_stock_line_warns(self):
-        self.assertIn("P15", ids(PARA + "\n\nLet that sink in."))
 
     def test_mentions_warn(self):
         self.assertIn("P16", ids(PARA + "\n\nThanks @Ana @Ben @Cal @Dee"))
@@ -112,7 +119,7 @@ class Other(unittest.TestCase):
 
 class Share(unittest.TestCase):
     def test_share_post_keeps_its_link(self):
-        post = "My new paper compares three industries.\n\n" + PARA + "\n\n" + PARA + "\n\n" + PARA + "\n\nhttps://example.com/paper\n\nWhich would you fix first: equipment or access?"
+        post = good_post().replace("Which first-week", "https://example.com/paper\n\nWhich first-week")
         found = ids(post, post_type="share")
         self.assertFalse({"P02", "P03", "P10", "P19"} & found, found)
 
@@ -120,7 +127,7 @@ class Share(unittest.TestCase):
         self.assertIn("P19", ids(PARA + "\n\n" + PARA, post_type="share"))
 
     def test_share_range(self):
-        self.assertIn("P02", ids(good_post() + "\n\nhttps://example.com/paper", post_type="share"))
+        self.assertIn("P02", ids(PARA + "\n\nhttps://example.com/paper", post_type="share"))
 
 
 class Poll(unittest.TestCase):

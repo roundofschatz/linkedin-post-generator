@@ -17,7 +17,7 @@ What LinkedIn rewards and cuts, with the evidence and sources for each rule, is 
 3. **Get your angle.** Your take, a case from your work, a number or a decision. If the source and your message don't hold one, it asks you one question first.
 4. **Pick the post type.** Sharing your own work when the point is to send readers to it, otherwise text by default. A PDF carousel for a framework or steps, photos when you have them, a poll when you want the answer, a video script when you'll film.
 5. **Write.** The point in the first line, under the "see more" cut. One subject. 1,300 to 1,900 characters for a text post. Short paragraphs. A close that invites a real answer, not a reflex comment. A link only when the post's job needs one, like sharing your own article, and no more than two hashtags.
-6. **Check.** A script checks the length, the opening line, hashtags, links, bait and stock LinkedIn lines. Then two checks it can't do: would a stranger know only you could have written this, and is every fact backed by the source or by you?
+6. **Check.** A script checks the length, the opening against the "see more" fold, paragraphs, hashtags, links and engagement bait. Then two checks it can't do: would a stranger know only you could have written this, and is every fact backed by the source or by you?
 7. **Deliver.** The post, ready to paste, with the slide outline, image notes or poll when there is one, and a short list of anything to fill or check.
 
 ## Works with Plainspeak Writer

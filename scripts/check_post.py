@@ -10,7 +10,7 @@
 The check reads the post as LinkedIn shows it: the character count includes
 spaces and line breaks, and the opening is the first line a reader sees
 before "see more". It finds surface patterns only: length, the opening,
-hashtags, links, engagement bait and a few stock LinkedIn lines. Whether the
+paragraphs, hashtags, links and engagement bait. Whether the
 post says something worth reading is the edit's job, not this script's.
 
 HARD rules block the post. WARN rules stay only with a stated reason.
@@ -28,18 +28,19 @@ from pathlib import Path
 
 __version__ = "1.1.0"
 
-# Limits and targets, from references/platform.md.
-POST_LIMIT = 3000          # LinkedIn's hard cap on a post
-SEE_MORE_DESKTOP = 210     # about where desktop cuts the post
-SEE_MORE_MOBILE = 140      # about where mobile cuts the post
-TEXT_RANGE = (1300, 1900)  # a text post's target
-SHORT_RANGE = (150, 1300)  # the text over a document, images, a poll or a video
-SHARE_RANGE = (700, 1200)  # a post sending readers to the writer's own work
-POLL_QUESTION = 140
+# Limits and targets. Each number is in references/platform.md, as a
+# finding with its source or in "The skill's own choices".
+POST_LIMIT = 3000          # LinkedIn's limit on a post
+SEE_MORE_DESKTOP = 210     # about where desktop folds the post
+SEE_MORE_MOBILE = 140      # about where mobile folds the post
+TEXT_RANGE = (1300, 1900)  # skill's choice, inside the 1,300-2,500 that did best
+SHORT_RANGE = (150, 1300)  # skill's choice: text over a document, images, a poll or a video
+MIN_PARAGRAPHS = 7         # posts with fewer than 7 paragraphs did 66% worse (one dataset)
+POLL_QUESTION = 140        # LinkedIn's limits
 POLL_OPTION = 30
 POLL_OPTIONS = (2, 4)
-HASHTAG_MAX = 2
-MENTION_MAX = 3
+HASHTAG_MAX = 2            # skill's choice, inside the report's 0-3
+MENTION_MAX = 3            # skill's choice
 
 TYPES = ("text", "share", "document", "images", "poll", "video")
 
@@ -50,24 +51,24 @@ def rule(rid, level, name, fix):
 
 RULES = [
     rule("P01", "HARD", "over LinkedIn's 3,000-character limit", "cut a point; LinkedIn won't post it"),
-    rule("P02", "WARN", "length outside the target for this post type", "add the writer's facts or cut what repeats"),
-    rule("P03", "HARD", "opening line runs past the desktop 'see more' cut", "put the point in the first 140 characters"),
-    rule("P04", "WARN", "opening line runs past the mobile 'see more' cut", "put the point in the first 140 characters"),
-    rule("P05", "HARD", "greeting or setup opener", "open on the point, a fact or a scene the writer gave"),
-    rule("P06", "WARN", "opens on a question", "open on the claim or the scene; question openers did worst in 2026 data"),
-    rule("P07", "HARD", "engagement bait", "end on the position or a specific question about a named case"),
-    rule("P08", "HARD", "more than three hashtags", "use none, or up to two that name the exact topic or a real community"),
-    rule("P09", "WARN", "three hashtags, or a hashtag inside a sentence", "use up to two, at the end"),
-    rule("P10", "WARN", "link in the post", "name the source in the post and keep the link in the notes, or accept the reach cost"),
-    rule("P11", "WARN", "one sentence per line, all the way down", "join sentences that belong together into short paragraphs"),
+    rule("P02", "WARN", "length outside the target for this post type", "add the writer's argument or cut what repeats"),
+    rule("P03", "HARD", "first line runs past the desktop fold (210 characters)", "state the point in the first 140 characters"),
+    rule("P04", "WARN", "first sentence runs past the mobile fold (140 characters)", "state the point in the first 140 characters"),
+    rule("P05", "WARN", "greeting or setup opener", "spend the first 140 characters on the point"),
+    rule("P06", "WARN", "opens on a question", "open on a short story or a claim; question openers did worst in 2026 data"),
+    rule("P07", "HARD", "engagement bait LinkedIn named", "end on a position or a specific question about a named case"),
+    rule("P08", "HARD", "more than two hashtags", "use none, or up to two that name the exact subject or a real community"),
+    rule("P09", "WARN", "hashtag inside a sentence", "put hashtags on the last line"),
+    rule("P10", "WARN", "link in the post", "ask the writer: keep it and accept the reach cost, or leave it out"),
+    rule("P11", "WARN", "fewer than 7 paragraphs", "break the body into short paragraphs of one or two full sentences"),
     rule("P12", "WARN", "arrow or emoji bullets", "write the points as sentences, or as a plain list"),
-    rule("P13", "HARD", "fancy Unicode letters (bold or italic fonts)", "use plain text; screen readers and search can't read these"),
-    rule("P14", "WARN", "'it's not X, it's Y' or 'not just X, but Y'", "say the point straight"),
-    rule("P15", "WARN", "stock LinkedIn line", "say the point itself"),
+    rule("P13", "WARN", "bold or italic Unicode letters", "use plain text; screen readers can't read these"),
+    rule("P14", "HARD", "'it's not X, it's Y' or 'not just X, but Y'", "say the point straight; LinkedIn cuts reach for this shape"),
     rule("P16", "WARN", "more than three @mentions", "tag only people the post is about"),
     rule("P17", "HARD", "poll question or option over LinkedIn's limit", "140 characters for the question, 30 for each option"),
     rule("P18", "HARD", "poll needs two to four options", "give two, three or four options"),
     rule("P19", "HARD", "a post sharing the writer's own work has no link", "put the link on its own line after the body"),
+    rule("P20", "WARN", "other engagement bait", "end on a position or a specific question about a named case"),
 ]
 BY_ID = {r["id"]: r for r in RULES}
 
@@ -79,16 +80,22 @@ GREETING = re.compile(
     r"|(?:(?:i'?m|we'?re|i\s+am|we\s+are)\s+)?(?:so\s+)?(?:thrilled|excited|delighted|happy|proud)\s+to\s+(?:announce|share))\b",
     re.I)
 
-BAIT = re.compile(
-    r"\bcomment\s+(?:['\"‘“]?\w+['\"’”]?\s+)?(?:below|if|and\s+i'?ll)\b"
+# LinkedIn's named examples: "Comment 'Yes' if you agree", like-if lines,
+# and typing a word to get something sent.
+BAIT_NAMED = re.compile(
+    r"\bcomment\s+['\"‘“]?\w+['\"’”]?\s+(?:if|and\s+i'?ll|below\s+(?:if|and))\b"
     r"|\b(?:type|comment|reply|drop)\s+['\"‘“]\w+['\"’”]"
-    r"|\bdrop\s+(?:a|an|your)\s+(?:comment|emoji|\S+\s+below)\b"
     r"|\b(?:like|repost|share|react)\s+(?:this\s+)?if\b"
+    r"|\bdm\s+me\s+['\"‘“]\w+",
+    re.I)
+
+# The skill's own list, beyond LinkedIn's examples.
+BAIT_OTHER = re.compile(
+    r"\bdrop\s+(?:a|an|your)\s+(?:comment|emoji|\S+\s+below)\b|\bcomment\s+below\b"
     r"|\brepost\s+(?:to|this\s+to)\s+help\b|♻️?\s*repost"
     r"|\bfollow\s+(?:me\s+)?for\s+more\b|\bhit\s+(?:the\s+)?(?:bell|follow)\b|\bsmash\s+that\b"
     r"|\btag\s+(?:someone|a\s+friend|a\s+colleague|\d+)\b"
     r"|\bwho\s+else\s+(?:has|is|agrees|feels)\b"
-    r"|\bdm\s+me\s+['\"‘“]\w+"
     r"|(?:^|[.!?\n]\s*)(?:agree|thoughts|right|yes\s+or\s+no)\s*\?",
     re.I | re.M)
 
@@ -99,18 +106,10 @@ NOT_X_Y = re.compile(
     r"|\b(?:this|it)\s+isn'?t\s+about\s+[^.?!\n]{1,60}?[.;,]\s*(?:it'?s|this\s+is)\s+about\b",
     re.I)
 
-STOCK = re.compile(
-    r"\blet\s+that\s+sink\s+in\b|\bread\s+that\s+again\b|\bhere'?s\s+the\s+thing\b"
-    r"|\bunpopular\s+opinion\b|\bhot\s+take\b|\bgame[-\s]?changer\b|\bi'?ll\s+go\s+first\b"
-    r"|\bthe\s+secret\s+(?:sauce|is)\b|\bstop\s+scrolling\b|\bnobody\s+talks\s+about\b"
-    r"|\bhere'?s\s+what\s+(?:i|we)\s+learned\b|\bkey\s+takeaways?\b|\bbig\s+lesson\b"
-    r"|\bhumbled\b|\bwhat\s+a\s+(?:journey|ride)\b",
-    re.I)
-
 ARROW = re.compile(r"^\s*(?:[→➡➔▶►•✔✅❌⭐✨⚡\U0001F449\U0001F525\U0001F4A1\U0001F4CC\U0001F680\U0001F4C8\U0001F4CA\U0001F539\U0001F538\U0001F536\U0001F537☑⏩]|\d️⃣)", re.M)
 FANCY = re.compile(r"[\U0001D400-\U0001D7FF]")
 HASHTAG = re.compile(r"(?<![\w#&/])#[A-Za-z][\w]*")
-URL = re.compile(r"\bhttps?://\S+|\bwww\.\S+|\b[\w-]+\.(?:com|org|net|io|co|ai|gov|edu)/\S*", re.I)
+URL = re.compile(r"\bhttps?://\S+|\bwww\.\S+|(?<![@\w.])(?:[a-z0-9-]+\.)+[a-z]{2,12}(?:/\S*)?(?=[\s,;:!?)]|\.(?:\s|$)|$)", re.I)
 MENTION = re.compile(r"(?<![\w@])@[A-Z][\w.-]*")
 
 
@@ -143,29 +142,32 @@ def check(text, post_type="text", link_ok=False, poll=None, skip=()):
 
     if n > POST_LIMIT:
         hit("P01", "-", f"{n:,} characters")
-    lo, hi = {"text": TEXT_RANGE, "share": SHARE_RANGE}.get(post_type, SHORT_RANGE)
+    lo, hi = TEXT_RANGE if post_type in ("text", "share") else SHORT_RANGE
     if not lo <= n <= hi:
         hit("P02", "-", f"{n:,} characters; the target for a {post_type} post is {lo:,} to {hi:,}")
 
     first = lines(body)[0] if body else ""
     if len(first) > SEE_MORE_DESKTOP:
         hit("P03", "line 1", f"{len(first)} characters: {snippet(first)}")
-    elif len(first) > SEE_MORE_MOBILE:
-        hit("P04", "line 1", f"{len(first)} characters: {snippet(first)}")
+    else:
+        m = re.search(r"[.!?](?=\s|$)", body)
+        lead = body[: m.end()] if m else body
+        if len(lead) > SEE_MORE_MOBILE:
+            hit("P04", "line 1", f"{len(lead)} characters: {snippet(lead)}")
     if GREETING.search(first):
         hit("P05", "line 1", snippet(first))
     first_sentence = re.split(r"(?<=[.!?])\s", first, maxsplit=1)[0]
     if first_sentence.rstrip().endswith("?"):
         hit("P06", "line 1", snippet(first_sentence))
 
-    for m in BAIT.finditer(body):
+    for m in BAIT_NAMED.finditer(body):
         hit("P07", f"line {line_no(body, m.start())}", snippet(m.group(0).strip()))
+    for m in BAIT_OTHER.finditer(body):
+        hit("P20", f"line {line_no(body, m.start())}", snippet(m.group(0).strip()))
 
     tags = list(HASHTAG.finditer(body))
-    if len(tags) > 3:
+    if len(tags) > HASHTAG_MAX:
         hit("P08", "-", f"{len(tags)} hashtags")
-    elif len(tags) == 3:
-        hit("P09", "-", "3 hashtags")
     paras = paragraphs(body)
     all_lines = body.splitlines()
     for m in tags:
@@ -179,9 +181,10 @@ def check(text, post_type="text", link_ok=False, poll=None, skip=()):
         for m in URL.finditer(body):
             hit("P10", f"line {line_no(body, m.start())}", snippet(m.group(0), 50))
 
-    singles = [p for p in paras if "\n" not in p and len(re.findall(r"[.!?](?:\s|$)", p)) <= 1]
-    if len(paras) >= 6 and len(singles) / len(paras) >= 0.6:
-        hit("P11", "-", f"{len(singles)} of {len(paras)} paragraphs are one line")
+    if post_type in ("text", "share"):
+        prose = [p for p in paras if not re.fullmatch(r"(?:\s*#[A-Za-z]\w*[\s,]*)+", p) and not URL.fullmatch(p)]
+        if len(prose) < MIN_PARAGRAPHS:
+            hit("P11", "-", f"{len(prose)} paragraphs")
 
     for m in ARROW.finditer(body):
         hit("P12", f"line {line_no(body, m.start())}", snippet(body[m.start(): m.start() + 40]))
@@ -190,8 +193,6 @@ def check(text, post_type="text", link_ok=False, poll=None, skip=()):
         hit("P13", f"line {line_no(body, m.start())}", snippet(body[max(0, m.start() - 10): m.start() + 30]))
     for m in NOT_X_Y.finditer(body):
         hit("P14", f"line {line_no(body, m.start())}", snippet(m.group(0)))
-    for m in STOCK.finditer(body):
-        hit("P15", f"line {line_no(body, m.start())}", snippet(m.group(0)))
     mentions = MENTION.findall(body)
     if len(mentions) > MENTION_MAX:
         hit("P16", "-", f"{len(mentions)} mentions")
