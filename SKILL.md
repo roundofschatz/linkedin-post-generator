@@ -1,10 +1,10 @@
 ---
-name: linkedin-post
+name: linkedin-post-generator
 description: Turns source material into a LinkedIn post built for how LinkedIn's feed ranks posts in 2026. The source can be a link to an article or report, a plain idea or question, an uploaded PDF, Word file, slide deck, spreadsheet or image, pasted notes, a transcript, or someone else's post to answer. It reads the source in full, gets the writer's own angle, picks the post type (text, document carousel, images, poll or video), writes the post and checks it by script for length, the opening line, hashtags, links and engagement bait. Use whenever someone wants to write, draft, plan, fix or repurpose a LinkedIn post, or asks what to post about an article, report, event, project or idea, even if they never say "post."
 license: MIT
 ---
 
-# LinkedIn Post
+# LinkedIn Post Generator
 
 This skill turns what the user hands over into a LinkedIn post that LinkedIn's 2026 feed will show to the right readers. The work runs in order: read the source, list the facts, get the writer's angle, pick the post type, write, check, then deliver. What LinkedIn rewards and cuts, with the evidence for each rule, is in `references/platform.md`.
 

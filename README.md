@@ -1,6 +1,6 @@
-# LinkedIn Post
+# LinkedIn Post Generator
 
-LinkedIn Post is a Claude skill that turns what you hand it into a LinkedIn post built for how LinkedIn's feed works in 2026. Give it a link to an article, a rough idea, a report, a slide deck, a spreadsheet, a photo, your notes from a talk or someone else's post you want to answer. It reads the source in full, asks for your own take when the source doesn't hold one, picks the right kind of post and writes it. Then a script checks the post before you see it.
+LinkedIn Post Generator is a Claude skill that turns what you hand it into a LinkedIn post built for how LinkedIn's feed works in 2026. Give it a link to an article, a rough idea, a report, a slide deck, a spreadsheet, a photo, your notes from a talk or someone else's post you want to answer. It reads the source in full, asks for your own take when the source doesn't hold one, picks the right kind of post and writes it. Then a script checks the post before you see it.
 
 ## Why it works this way
 
@@ -22,12 +22,12 @@ What LinkedIn rewards and cuts, with the evidence and sources for each rule, is 
 
 ## Works with Plainspeak Writer
 
-When [Plainspeak Writer](https://github.com/roundofschatz/plainspeak-writer) is installed, LinkedIn Post hands it the sentence work and runs its check too. On its own, it uses the short writing rules in `references/writing.md`.
+When [Plainspeak Writer](https://github.com/roundofschatz/plainspeak-writer) is installed, LinkedIn Post Generator hands it the sentence work and runs its check too. On its own, it uses the short writing rules in `references/writing.md`.
 
 ## What's in the folder
 
 ```
-linkedin-post/
+linkedin-post-generator/
 ├── SKILL.md                  the steps Claude follows
 ├── README.md                 this file
 ├── LICENSE                   MIT
@@ -43,23 +43,23 @@ linkedin-post/
     └── test_check_post.py    tests for the check
 ```
 
-The repository is the skill folder, so the folder name has to stay `linkedin-post`. Skills only load from a folder whose name matches the `name` field in SKILL.md.
+The repository is the skill folder, so the folder name has to stay `linkedin-post-generator`. Skills only load from a folder whose name matches the `name` field in SKILL.md.
 
 ## Install
 
-Custom skills don't sync between Claude products, so install LinkedIn Post in each one you use.
+Custom skills don't sync between Claude products, so install LinkedIn Post Generator in each one you use.
 
-**As a plugin.** LinkedIn Post is listed in the author's plugin marketplace, `roundofschatz`, which lives in the job-seeker-ops repository. In Claude Code, run `/plugin marketplace add roundofschatz/job-seeker-ops`, then `/plugin install linkedin-post@roundofschatz`. In the Claude app, add the same marketplace under Customize, Plugins.
+**As a plugin.** LinkedIn Post Generator is listed in the author's plugin marketplace, `roundofschatz`, which lives in the job-seeker-ops repository. In Claude Code, run `/plugin marketplace add roundofschatz/job-seeker-ops`, then `/plugin install linkedin-post-generator@roundofschatz`. In the Claude app, add the same marketplace under Customize, Plugins.
 
 **Claude Code.** Clone the repository into your skills folder. Use `~/.claude/skills/` for every project, or `.claude/skills/` inside one project:
 
 ```bash
-git clone https://github.com/roundofschatz/linkedin-post ~/.claude/skills/linkedin-post
+git clone https://github.com/roundofschatz/linkedin-post-generator ~/.claude/skills/linkedin-post-generator
 ```
 
-**Claude.ai.** Download `linkedin-post.zip` from the Releases page and upload it under Skills in Settings. Custom skills need a paid plan with code execution turned on. Don't use GitHub's green "Download ZIP" button, because it names the folder `linkedin-post-main`, which doesn't match the skill's name.
+**Claude.ai.** Download `linkedin-post-generator.zip` from the Releases page and upload it under Skills in Settings. Custom skills need a paid plan with code execution turned on. Don't use GitHub's green "Download ZIP" button, because it names the folder `linkedin-post-generator-main`, which doesn't match the skill's name.
 
-**Claude API.** Upload the `linkedin-post` folder through the Skills API.
+**Claude API.** Upload the `linkedin-post-generator` folder through the Skills API.
 
 ## Use
 
@@ -105,4 +105,4 @@ Ryan Schatzman · [LinkedIn](https://www.linkedin.com/in/ryanschatzman)
 
 ## License
 
-LinkedIn Post is released under the MIT License. See `LICENSE` for the terms. It isn't made by or affiliated with LinkedIn.
+LinkedIn Post Generator is released under the MIT License. See `LICENSE` for the terms. It isn't made by or affiliated with LinkedIn.
