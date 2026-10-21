@@ -2,6 +2,14 @@
 
 Every change to this skill is logged here: what was added, changed or removed, and why. Nothing comes out without a line saying so. Newest first.
 
+## 1.1.1 · No paragraph-count target
+
+Why: 1.1.0 asked for 8 to 12 paragraphs and warned under 7, after one vendor dataset found posts with more than 14 paragraphs did better. In a post of 1,300 to 2,500 characters, that many paragraphs means one short sentence per line, the layout Plainspeak Writer bars as an AI tell. The owner rejected it on October 21, 2026: the finding comes from one source with a private method, and it works against a settled voice rule.
+
+- Changed: paragraphs run one to three full sentences, with no count to hit. `platform.md` keeps the finding and says why the skill doesn't follow it.
+- Removed: P11, the under-7-paragraphs warning, and its test.
+- Changed: the checker's version to 1.1.1.
+
 ## 1.1.0 · Posts that share the writer's own work
 
 Why: the first real use, on October 21, 2026, was a post sharing the owner's own paper. The skill moved the link out of the post for reach, opened on one vivid case from deep in the paper that covered one of its three industries, and dropped facts into sentences as quick asides. The owner rejected all three. A post that exists to send readers to the writer's work needs the link, an opening that covers the whole piece, and the evidence left in the piece.

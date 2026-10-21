@@ -10,7 +10,7 @@
 The check reads the post as LinkedIn shows it: the character count includes
 spaces and line breaks, and the opening is the first line a reader sees
 before "see more". It finds surface patterns only: length, the opening,
-paragraphs, hashtags, links and engagement bait. Whether the
+hashtags, links and engagement bait. Whether the
 post says something worth reading is the edit's job, not this script's.
 
 HARD rules block the post. WARN rules stay only with a stated reason.
@@ -26,7 +26,7 @@ import re
 import sys
 from pathlib import Path
 
-__version__ = "1.1.0"
+__version__ = "1.1.1"
 
 # Limits and targets. Each number is in references/platform.md, as a
 # finding with its source or in "The skill's own choices".
@@ -35,7 +35,6 @@ SEE_MORE_DESKTOP = 210     # about where desktop folds the post
 SEE_MORE_MOBILE = 140      # about where mobile folds the post
 TEXT_RANGE = (1300, 1900)  # skill's choice, inside the 1,300-2,500 that did best
 SHORT_RANGE = (150, 1300)  # skill's choice: text over a document, images, a poll or a video
-MIN_PARAGRAPHS = 7         # posts with fewer than 7 paragraphs did 66% worse (one dataset)
 POLL_QUESTION = 140        # LinkedIn's limits
 POLL_OPTION = 30
 POLL_OPTIONS = (2, 4)
@@ -60,7 +59,6 @@ RULES = [
     rule("P08", "HARD", "more than two hashtags", "use none, or up to two that name the exact subject or a real community"),
     rule("P09", "WARN", "hashtag inside a sentence", "put hashtags on the last line"),
     rule("P10", "WARN", "link in the post", "ask the writer: keep it and accept the reach cost, or leave it out"),
-    rule("P11", "WARN", "fewer than 7 paragraphs", "break the body into short paragraphs of one or two full sentences"),
     rule("P12", "WARN", "arrow or emoji bullets", "write the points as sentences, or as a plain list"),
     rule("P13", "WARN", "bold or italic Unicode letters", "use plain text; screen readers can't read these"),
     rule("P14", "HARD", "'it's not X, it's Y' or 'not just X, but Y'", "say the point straight; LinkedIn cuts reach for this shape"),
@@ -181,10 +179,6 @@ def check(text, post_type="text", link_ok=False, poll=None, skip=()):
         for m in URL.finditer(body):
             hit("P10", f"line {line_no(body, m.start())}", snippet(m.group(0), 50))
 
-    if post_type in ("text", "share"):
-        prose = [p for p in paras if not re.fullmatch(r"(?:\s*#[A-Za-z]\w*[\s,]*)+", p) and not URL.fullmatch(p)]
-        if len(prose) < MIN_PARAGRAPHS:
-            hit("P11", "-", f"{len(prose)} paragraphs")
 
     for m in ARROW.finditer(body):
         hit("P12", f"line {line_no(body, m.start())}", snippet(body[m.start(): m.start() + 40]))

@@ -92,10 +92,6 @@ class Other(unittest.TestCase):
         self.assertIn("P10", ids(post))
         self.assertNotIn("P10", ids(post, link_ok=True))
 
-    def test_few_paragraphs_warn(self):
-        self.assertIn("P11", ids(PARA + "\n\n" + PARA))
-        self.assertNotIn("P11", ids(good_post()))
-
     def test_bare_domain_counts_as_link(self):
         self.assertIn("P10", ids(PARA + "\n\nRead it at basecollab.studio today."))
         self.assertNotIn("P10", ids(PARA + "\n\nWe tried it, e.g. twice, in 2.5 weeks."))

@@ -82,7 +82,7 @@ The last section lists the skill's own choices, which aren't findings.
 These rules aren't findings. Each is a choice the skill makes, with its reason.
 
 - **Text post length, 1,300 to 1,900 characters, aiming for 1,500 to 1,700.** The bottom of the research range, so it also fits Plainspeak Writer's LinkedIn range of 150 to 300 words.
-- **Paragraphs of one or two full sentences.** The paragraph data favors many short paragraphs. Plainspeak Writer bars one sentence per line as an AI tell, so the skill aims for short paragraphs of whole, connected sentences, usually 8 to 12 in a text post.
+- **Paragraphs of one to three full sentences, with no paragraph-count target.** One vendor dataset found posts with more than 14 paragraphs beat posts with fewer than 7. In a 1,300 to 2,500 character post, 14 paragraphs means one short sentence per line, so the finding measures that layout. It comes from one source with a private method, and the layout is the one Plainspeak Writer bars as an AI tell, so the skill doesn't follow it.
 - **Text over a document, images, a poll or a video: 150 to 1,300 characters.** No research covers this. The media holds the content, so the text stays shorter than a text post.
 - **A post sharing the writer's own work keeps its link.** The research says a link costs reach. When the post exists to send readers to the work, the skill counts the clicks as worth that cost, removes the preview card to keep the cost lower, and offers a document post as the other route.
 - **Hashtags: none by default, at most two.** Inside the report's 0 to 3; two matches Plainspeak Writer's cap.
