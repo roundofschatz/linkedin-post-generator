@@ -25,6 +25,7 @@ The same day, a fresh reviewer checked every rule against the research report th
 - Changed: posting advice now says to reply to every serious comment for 30 to 60 minutes and not to use comment tools or engagement groups.
 - Changed: `platform.md` rewritten against the report: the link cost as the studies give it, not a rounded range; the AI-slop numbers with their caveats; hook data marked secondary; frequency marked as disputed; poll limits with their source; the skill's own choices listed.
 - Changed: the script. Only LinkedIn's named bait blocks (P07); other bait warns (P20). Hashtags block above two, matching the stated cap. "It's not X, it's Y" now blocks (P14), since LinkedIn said it cut reach for it. Greeting openers and Unicode letters now warn. The opening check measures the first sentence across lines. Links are found on any domain. The stock-line rule (P15) is gone; it had no source and flagged contrarian openers the data favors.
+- Added: never quote from a web tool's summary of a page; quote only text the user pasted or the tool returned word for word. A rerun quoted a line from a summary.
 - Removed: "open in the first five seconds" for video, and "readers save these" for documents, neither in the research.
 - Added: `tests/cases/share-own-work.md`, the case that found these problems, to rerun after changes.
 

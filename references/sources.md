@@ -4,7 +4,7 @@ A post is only as good as the reading behind it. Read the whole source before wr
 
 ## By kind of source
 
-**A link to an article, report or page.** Open it with the web tool and read all of it. Note the title, the publisher, the author, the date and the one or two claims that matter. If the page won't open (a paywall, a login wall, a page that blocks tools), say so and ask the user to paste the text. Don't fall back on other copies of it around the web.
+**A link to an article, report or page.** Open it with the web tool and read all of it. Note the title, the publisher, the author, the date and the one or two claims that matter. If the page won't open (a paywall, a login wall, a page that blocks tools), say so and ask the user to paste the text. Don't fall back on other copies of it around the web. If the web tool returns only a summary instead of the page's text, write from the summary but quote nothing from it, since a summary's wording isn't the source's; ask the user to paste any line they want quoted.
 
 **A LinkedIn post or article.** These usually need a login, so ask the user to paste the text and say who wrote it. If the user wants to answer it, follow "Answering someone else's post" below.
 
