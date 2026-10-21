@@ -26,7 +26,7 @@ import re
 import sys
 from pathlib import Path
 
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 
 # Limits and targets, from references/platform.md.
 POST_LIMIT = 3000          # LinkedIn's hard cap on a post
@@ -34,13 +34,14 @@ SEE_MORE_DESKTOP = 210     # about where desktop cuts the post
 SEE_MORE_MOBILE = 140      # about where mobile cuts the post
 TEXT_RANGE = (1300, 1900)  # a text post's target
 SHORT_RANGE = (150, 1300)  # the text over a document, images, a poll or a video
+SHARE_RANGE = (700, 1200)  # a post sending readers to the writer's own work
 POLL_QUESTION = 140
 POLL_OPTION = 30
 POLL_OPTIONS = (2, 4)
 HASHTAG_MAX = 2
 MENTION_MAX = 3
 
-TYPES = ("text", "document", "images", "poll", "video")
+TYPES = ("text", "share", "document", "images", "poll", "video")
 
 
 def rule(rid, level, name, fix):
@@ -66,6 +67,7 @@ RULES = [
     rule("P16", "WARN", "more than three @mentions", "tag only people the post is about"),
     rule("P17", "HARD", "poll question or option over LinkedIn's limit", "140 characters for the question, 30 for each option"),
     rule("P18", "HARD", "poll needs two to four options", "give two, three or four options"),
+    rule("P19", "HARD", "a post sharing the writer's own work has no link", "put the link on its own line after the body"),
 ]
 BY_ID = {r["id"]: r for r in RULES}
 
@@ -141,7 +143,7 @@ def check(text, post_type="text", link_ok=False, poll=None, skip=()):
 
     if n > POST_LIMIT:
         hit("P01", "-", f"{n:,} characters")
-    lo, hi = TEXT_RANGE if post_type == "text" else SHORT_RANGE
+    lo, hi = {"text": TEXT_RANGE, "share": SHARE_RANGE}.get(post_type, SHORT_RANGE)
     if not lo <= n <= hi:
         hit("P02", "-", f"{n:,} characters; the target for a {post_type} post is {lo:,} to {hi:,}")
 
@@ -171,7 +173,9 @@ def check(text, post_type="text", link_ok=False, poll=None, skip=()):
         if not re.fullmatch(r"(?:\s*#[A-Za-z]\w*[\s,]*)+", line):
             hit("P09", f"line {line_no(body, m.start())}", f"{m.group(0)} inside a sentence")
 
-    if not link_ok:
+    if post_type == "share" and not URL.search(body):
+        hit("P19", "-", "no link found")
+    if not link_ok and post_type != "share":
         for m in URL.finditer(body):
             hit("P10", f"line {line_no(body, m.start())}", snippet(m.group(0), 50))
 
@@ -210,7 +214,7 @@ def main(argv=None):
     ap = argparse.ArgumentParser(description="Check a LinkedIn post.")
     ap.add_argument("post", nargs="?", help="the post, as plain text")
     ap.add_argument("--type", choices=TYPES, default="text",
-                    help="text, document, images, poll or video (default: text)")
+                    help="text, share, document, images, poll or video (default: text)")
     ap.add_argument("--poll", metavar="FILE", help="poll file: the question on line 1, one option per line after")
     ap.add_argument("--link-ok", action="store_true", help="the writer chose to keep a link in the post")
     ap.add_argument("--skip", default="", help="rule IDs to turn off, comma-separated, each with a stated reason")

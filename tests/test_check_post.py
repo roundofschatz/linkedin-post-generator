@@ -110,6 +110,19 @@ class Other(unittest.TestCase):
         self.assertNotIn("P06", ids("Ever waited for a laptop?\n\n" + PARA, skip={"P06"}))
 
 
+class Share(unittest.TestCase):
+    def test_share_post_keeps_its_link(self):
+        post = "My new paper compares three industries.\n\n" + PARA + "\n\n" + PARA + "\n\n" + PARA + "\n\nhttps://example.com/paper\n\nWhich would you fix first: equipment or access?"
+        found = ids(post, post_type="share")
+        self.assertFalse({"P02", "P03", "P10", "P19"} & found, found)
+
+    def test_share_post_without_link_blocks(self):
+        self.assertIn("P19", ids(PARA + "\n\n" + PARA, post_type="share"))
+
+    def test_share_range(self):
+        self.assertIn("P02", ids(good_post() + "\n\nhttps://example.com/paper", post_type="share"))
+
+
 class Poll(unittest.TestCase):
     def test_poll_limits(self):
         found = ids(PARA, post_type="poll", poll="Which first?\n- Equipment\n- " + "x" * 31)

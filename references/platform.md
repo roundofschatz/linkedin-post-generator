@@ -39,7 +39,7 @@ Each rule names its evidence:
 
 - A link in the post costs reach. Estimates run from about 15% to 25% for a typed link, and about half for a link-preview card. The highest estimate is about 60%, and one dataset found links helped. **[Data, sources disagree]**
 - Moving the link to the first comment may cost reach too. The data disagrees. **[Data, unsettled]**
-- So: by default, name the source in the post and keep the link in the notes for the writer to decide.
+- So: when the post exists to send readers to the writer's own work, keep the link in the post; the clicks are worth the cost. When the post responds to someone else's source, the writer decides, knowing the cost.
 
 ## Hashtags
 

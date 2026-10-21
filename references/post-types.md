@@ -4,12 +4,24 @@ Start from what the material is. A text post is the default. Pick another type o
 
 | The material is | Use | Why |
 |---|---|---|
+| The writer's own article, paper, page or launch, to send readers to | Sharing your own work | The link is the point. |
 | A view, a story or a lesson | Text | The words are the whole post. |
 | A framework, a process, steps or a checklist the reader will keep | Document (PDF carousel) | One idea per slide; readers save these. |
 | Real photos of the work, an event or a before-and-after | Multiple images | Only when the user has the images. |
 | A real choice the writer wants an answer to | Poll | Only when the writer will use the answer. |
 | Something the writer will film | Video | Only when the video and the text say the same thing. |
 | More than 3,000 characters of argument | Article or newsletter | Too long for a post. |
+
+## Sharing your own work
+
+The post's job is to get the right people to open the piece. It previews the argument and sends readers to the evidence.
+
+- **First line:** the piece's central question or claim, across everything the piece covers. If the piece compares three industries, the line names all three. Never open on one example from inside the piece.
+- **Body, two or three short paragraphs:** what the piece argues, in the writer's own words, and what a reader will get from it, like a set of questions, a model or a finding they can use. Leave the evidence, the cases and the statistics in the piece. If one example earns a place, give it two full sentences or leave it out.
+- **The link** on its own line after the body. Write it out in full; LinkedIn turns it into a link.
+- **Close:** a specific question about the piece's subject that someone in the field can answer in a sentence.
+- **Length:** 700 to 1,200 characters, so the link sits near the "see more" fold and the reader has a reason to click.
+- When the user gives their own draft, keep their framing and terms. Fix the opening and cut what's vague; don't swap their words for the piece's or yours.
 
 ## Text
 

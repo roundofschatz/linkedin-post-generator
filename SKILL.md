@@ -24,9 +24,17 @@ Read `references/sources.md` and follow it for the kind of material you have. Re
 
 Before drafting, keep a short scratch list, out of the post: what the source says and who says it, the source's date, what the user gave (their facts, numbers and view), and what's missing. Draft only from this list.
 
-## Step 3: Get the writer's angle
+## Step 3: Get the post's job and the writer's angle
 
-Look at the list for one of these, in the user's own words:
+**First, the post's job.** Every post has one, and it sets the rules that follow:
+
+- **Share the writer's own work:** an article, paper, page, report or launch the writer made, where the point is to send readers to it. The link stays in the post.
+- **Respond to someone else's source:** an article, report, talk or post by someone else.
+- **Make a point of the writer's own:** an idea, a lesson or a story, with no source to send readers to.
+
+Read the job from the request. A link to the writer's own site or a piece they say they wrote is the first job. If the job isn't clear, ask it in the same message as the angle question below.
+
+**Then the angle.** For the first job, the piece itself is the angle: the post states the piece's argument, so no further angle is needed unless the user gave one. For the other two, look at the list for one of these, in the user's own words:
 
 - Their take on the source: where they agree or disagree, and why.
 - A case from their own work that shows the point.
@@ -44,7 +52,7 @@ When the user isn't there to answer, or asks you to draft anyway, write the post
 
 ## Step 4: Pick the post type
 
-Read `references/post-types.md`. Text is the default. Pick another type only when the material calls for it, and say why in one line.
+Read `references/post-types.md`. For the first job, use the "sharing your own work" post. Otherwise text is the default. Pick another type only when the material calls for it, and say why in one line.
 
 ## Step 5: Write
 
@@ -53,12 +61,13 @@ Read `references/post-types.md`. Text is the default. Pick another type only whe
 **Build:**
 
 - **One subject.** Name it early in the plain words people in the field use. The feed matches posts to readers by meaning, so a post about one clear thing reaches the people who care about it.
-- **The first line states the point.** Keep it under 140 characters: a specific claim, a scene the user described, or a line that cuts against a common belief in the field, which the body then backs up. Don't open on a greeting, a setup or a question.
+- **The first line states the central point.** Keep it under 140 characters. It states the main argument or question of the whole source or idea, across its full scope: a source about three industries opens on all three, never on one of them. A story or example opens the post only when the user's own point is that story. Never pull a vivid example from deep in a source to stand in for its argument. Don't open on a greeting, a setup or a question.
 - **The next line or two say why it matters** to the reader named in Step 3.
-- **The body makes the case** with the writer's facts and the credited source. Short paragraphs of one to three full sentences. Don't stack one-sentence lines.
+- **The body makes the case** with the writer's facts and the credited source. Short paragraphs of one to three full sentences, each one following from the last. Don't stack one-sentence lines.
+- **One example, explained, or none.** A post makes an argument; the source holds the evidence. Use at most one example, and give it the sentences it needs: what happened, and how it shows the point. Never tack a statistic, a name or a finding onto a sentence as a quick aside, and never run several facts one after another. When the post shares the writer's own work, leave the evidence in the piece.
 - **The close** is the writer's position, a next step, or a specific question about a named case or choice that someone with experience could answer in a sentence: "Which would you cut first: the kickoff deck or the status report?" Never "Thoughts?", "Agree?" or a request to comment, like or repost.
-- **Length:** 1,300 to 1,900 characters for a text post. Aim for the middle, about 1,500 to 1,700; the word count follows from that. For a document, images, a poll or a video, the text runs 150 to 1,300 characters. A user's request for another length wins.
-- **No link in the post.** Name the source in the post and put the link in the notes, so the user can choose: leave it out, or add it and accept less reach.
+- **Length:** 1,300 to 1,900 characters for a text post. Aim for the middle, about 1,500 to 1,700; the word count follows from that. A post sharing the writer's own work runs 700 to 1,200 characters. For a document, images, a poll or a video, the text runs 150 to 1,300 characters. A user's request for another length wins.
+- **Links follow the post's job.** When the post shares the writer's own work, the link goes in the post, on its own line after the body, and the notes say nothing about reach. A link in a post costs some reach (`references/platform.md` has the numbers), and sending readers to the work is worth that cost. When the post responds to someone else's source, name the source in the post and ask the user whether to include the link, with the cost in one line. When there's no source, there's no link.
 - **Hashtags:** none by default. At most two, on the last line, and only when they name the exact subject or a real community or event.
 - **Tags:** tag a person or company only when the post is about their work and treats it fairly. Never tag to borrow reach.
 - **Plain text only.** No arrow or emoji bullets, and no bold or italic Unicode letters. A list stays a plain list, and only when the content is a list.
@@ -71,15 +80,16 @@ Save the post on its own in a file, with no notes. From this skill's folder, run
 python3 scripts/check_post.py --type text post.txt
 ```
 
-Set `--type` to `text`, `document`, `images`, `poll` or `video`. For a poll, also pass `--poll poll.txt`, with the question on line 1 and one option per line after it. If the user chose to keep a link in the post, add `--link-ok`.
+Set `--type` to `share` for a post sharing the writer's own work, or to `text`, `document`, `images`, `poll` or `video`. A `share` post expects its link and doesn't flag it. For a poll, also pass `--poll poll.txt`, with the question on line 1 and one option per line after it. If the user chose to keep a link in any other post, add `--link-ok`.
 
-If Plainspeak Writer is installed, also run its check from that skill's folder: `python3 scripts/check_voice.py --surface linkedin post.txt`. Where only `python` exists, use that..
+If Plainspeak Writer is installed, also run its check from that skill's folder: `python3 scripts/check_voice.py --surface linkedin post.txt`. Where only `python` exists, use that.
 
 Rewrite every block. Fix every warning, or keep it with a stated reason, and turn a rule off with `--skip P06` only when the user asked for what it blocks. Repeat until nothing blocks. When code can't run, read the post against the rules in Step 5 and count the characters by hand.
 
 Then do two checks that the script can't:
 
 - **The stranger test.** Read the post as someone who doesn't know the writer. Could anyone in the field have written it without the writer's own case, number or view? If yes, it's the kind of post LinkedIn buries. Go back to Step 3.
+- **The scope test.** Does the first line cover what the whole source or idea covers? Does any sentence drop in a fact without saying how it shows the point? Fix either one before going on.
 - **The fact check.** When you can start a separate agent, write the notes from Step 7 into their own file first, then give it only the user's messages, the source text, the post and the notes, and ask it to quote every name, number, quote and claim the source and the user don't support, and every place the post says something bigger or firmer than they did. Don't give it your reasons. Cut or fix each line it quotes. When you can't start an agent, read the post line by line against the source and the user's messages as if someone else wrote it.
 
 ## Step 7: Deliver
@@ -95,7 +105,7 @@ Then short notes, one line each, only as needed:
 
 - Each bracket to fill.
 - Each quote, name or number to check against a transcript.
-- The source link, and the choice: leave it out of the post, or add it and accept less reach.
+- For a post responding to someone else's source, the link and the choice, if the user hasn't made it.
 - Anything in the source that looks unfinished or unreal, like a placeholder name.
 - Any warning you kept, and why.
 

@@ -2,6 +2,19 @@
 
 Every change to this skill is logged here: what was added, changed or removed, and why. Nothing comes out without a line saying so. Newest first.
 
+## 1.1.0 · Posts that share the writer's own work
+
+Why: the first real use, on October 21, 2026, was a post sharing the owner's own paper. The skill moved the link out of the post for reach, opened on one vivid case from deep in the paper that covered one of its three industries, and dropped facts into sentences as quick asides. The owner rejected all three. A post that exists to send readers to the writer's work needs the link, an opening that covers the whole piece, and the evidence left in the piece.
+
+- Added: Step 3 now settles the post's job first: share the writer's own work, respond to someone else's source, or make a point of the writer's own. The job sets the link, the post type and the length.
+- Added: a "sharing your own work" post in `references/post-types.md`: the piece's central point across its full scope, a preview of the argument, the link on its own line, 700 to 1,200 characters, and the writer's own terms kept.
+- Changed: the opening rule. The first line states the central point of the whole source or idea. An example opens only when the writer's point is that story.
+- Added: one example, explained, or none. No fact tacked onto a sentence as an aside, and no run of facts.
+- Changed: links follow the post's job. They stay in a post sharing the writer's work, the writer decides for someone else's source, and the cost moves to `platform.md` instead of the notes.
+- Added: the scope test in Step 6.
+- Added: `--type share` in `check_post.py`, with its length range and a new rule, P19, that blocks a share post with no link. Three tests.
+- Added: `tests/cases/share-own-work.md`, the case that found these problems, to rerun after changes.
+
 ## 1.0.0 · First release
 
 Why: LinkedIn rebuilt its feed in 2026. It now matches posts to readers by meaning, cuts generic and AI-sounding posts, and cuts engagement bait. Advice written before 2026, like stacking hashtags, no longer holds. This skill builds a post from source material for the feed as it works now.
