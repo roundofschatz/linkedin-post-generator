@@ -32,6 +32,7 @@ Keep a scratch list, out of the post:
 ## Credit and quoting
 
 - Name the source in the post: the publisher, author or speaker. "A Fortune piece this week" is enough when it's true.
+- When pasted text doesn't say who wrote it, ask in the Step 3 message. If the user isn't there to answer, describe it truthfully without a name, like "an article on hashtags I read this week," and note in the notes that naming it would be better. Don't put a bracket in the middle of the post for it.
 - Quote at most one short line, under 15 words, in quotation marks, word for word. Put everything else in your own words.
 - Never let the post stand in for the source. A summary of someone else's article, with no view of the user's own, gives readers no reason to read the post and gives LinkedIn a reason to bury it.
 

@@ -48,7 +48,7 @@ Read `references/post-types.md`. Text is the default. Pick another type only whe
 
 ## Step 5: Write
 
-**Voice.** If the Plainspeak Writer skill is installed, follow its steps and its LinkedIn guide for the drafting and editing, and give it this step's length and rules as the user's request. If it isn't installed, follow `references/writing.md`. Where the user shares posts of their own, match their length, paragraph habits and words.
+**Voice.** If the Plainspeak Writer skill is installed, follow its steps and its LinkedIn guide for the drafting and editing, and give it this step's length and rules as the user's request. Where the two skills differ, this one sets the length, the fact check's inputs and what the reply holds. If it isn't installed, follow `references/writing.md`. Where the user shares posts of their own, match their length, paragraph habits and words.
 
 **Build:**
 
@@ -57,7 +57,7 @@ Read `references/post-types.md`. Text is the default. Pick another type only whe
 - **The next line or two say why it matters** to the reader named in Step 3.
 - **The body makes the case** with the writer's facts and the credited source. Short paragraphs of one to three full sentences. Don't stack one-sentence lines.
 - **The close** is the writer's position, a next step, or a specific question about a named case or choice that someone with experience could answer in a sentence: "Which would you cut first: the kickoff deck or the status report?" Never "Thoughts?", "Agree?" or a request to comment, like or repost.
-- **Length:** 1,300 to 1,900 characters for a text post. For a document, images, a poll or a video, the text runs 150 to 1,300 characters. A user's request for another length wins.
+- **Length:** 1,300 to 1,900 characters for a text post. Aim for the middle, about 1,500 to 1,700; the word count follows from that. For a document, images, a poll or a video, the text runs 150 to 1,300 characters. A user's request for another length wins.
 - **No link in the post.** Name the source in the post and put the link in the notes, so the user can choose: leave it out, or add it and accept less reach.
 - **Hashtags:** none by default. At most two, on the last line, and only when they name the exact subject or a real community or event.
 - **Tags:** tag a person or company only when the post is about their work and treats it fairly. Never tag to borrow reach.
@@ -65,7 +65,7 @@ Read `references/post-types.md`. Text is the default. Pick another type only whe
 
 ## Step 6: Check
 
-Save the post on its own in a file, with no notes. Run:
+Save the post on its own in a file, with no notes. From this skill's folder, run:
 
 ```bash
 python scripts/check_post.py --type text post.txt
@@ -73,14 +73,14 @@ python scripts/check_post.py --type text post.txt
 
 Set `--type` to `text`, `document`, `images`, `poll` or `video`. For a poll, also pass `--poll poll.txt`, with the question on line 1 and one option per line after it. If the user chose to keep a link in the post, add `--link-ok`.
 
-If Plainspeak Writer is installed, also run its check from its own folder: `python scripts/check_voice.py --surface linkedin post.txt`.
+If Plainspeak Writer is installed, also run its check from that skill's folder: `python scripts/check_voice.py --surface linkedin post.txt`.
 
 Rewrite every block. Fix every warning, or keep it with a stated reason, and turn a rule off with `--skip P06` only when the user asked for what it blocks. Repeat until nothing blocks. When code can't run, read the post against the rules in Step 5 and count the characters by hand.
 
 Then do two checks that the script can't:
 
 - **The stranger test.** Read the post as someone who doesn't know the writer. Could anyone in the field have written it without the writer's own case, number or view? If yes, it's the kind of post LinkedIn buries. Go back to Step 3.
-- **The fact check.** When you can start a separate agent, give it only the user's messages, the source text and the post, and ask it to quote every name, number, quote and claim the source and the user don't support, and every place the post says something bigger or firmer than they did. Don't give it your reasons. Cut or fix each line it quotes. When you can't start an agent, read the post line by line against the source and the user's messages as if someone else wrote it.
+- **The fact check.** When you can start a separate agent, give it only the user's messages, the source text, the post and its notes, and ask it to quote every name, number, quote and claim the source and the user don't support, and every place the post says something bigger or firmer than they did. Don't give it your reasons. Cut or fix each line it quotes. When you can't start an agent, read the post line by line against the source and the user's messages as if someone else wrote it.
 
 ## Step 7: Deliver
 
