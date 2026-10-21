@@ -78,7 +78,7 @@ Hand it the material and say what you want. For example:
 From inside the folder, with Python 3 and nothing else:
 
 ```bash
-python scripts/check_post.py --type text post.txt
+python3 scripts/check_post.py --type text post.txt
 ```
 
 Set `--type` to `text`, `document`, `images`, `poll` or `video`. For a poll, add `--poll poll.txt`, with the question on line 1 and one option per line. If you've chosen to keep a link in the post, add `--link-ok`. Run `--list-rules` to see every rule. HARD rules block the post; WARN rules stay only with a reason.

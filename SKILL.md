@@ -68,23 +68,23 @@ Read `references/post-types.md`. Text is the default. Pick another type only whe
 Save the post on its own in a file, with no notes. From this skill's folder, run:
 
 ```bash
-python scripts/check_post.py --type text post.txt
+python3 scripts/check_post.py --type text post.txt
 ```
 
 Set `--type` to `text`, `document`, `images`, `poll` or `video`. For a poll, also pass `--poll poll.txt`, with the question on line 1 and one option per line after it. If the user chose to keep a link in the post, add `--link-ok`.
 
-If Plainspeak Writer is installed, also run its check from that skill's folder: `python scripts/check_voice.py --surface linkedin post.txt`.
+If Plainspeak Writer is installed, also run its check from that skill's folder: `python3 scripts/check_voice.py --surface linkedin post.txt`. Where only `python` exists, use that..
 
 Rewrite every block. Fix every warning, or keep it with a stated reason, and turn a rule off with `--skip P06` only when the user asked for what it blocks. Repeat until nothing blocks. When code can't run, read the post against the rules in Step 5 and count the characters by hand.
 
 Then do two checks that the script can't:
 
 - **The stranger test.** Read the post as someone who doesn't know the writer. Could anyone in the field have written it without the writer's own case, number or view? If yes, it's the kind of post LinkedIn buries. Go back to Step 3.
-- **The fact check.** When you can start a separate agent, give it only the user's messages, the source text, the post and its notes, and ask it to quote every name, number, quote and claim the source and the user don't support, and every place the post says something bigger or firmer than they did. Don't give it your reasons. Cut or fix each line it quotes. When you can't start an agent, read the post line by line against the source and the user's messages as if someone else wrote it.
+- **The fact check.** When you can start a separate agent, write the notes from Step 7 into their own file first, then give it only the user's messages, the source text, the post and the notes, and ask it to quote every name, number, quote and claim the source and the user don't support, and every place the post says something bigger or firmer than they did. Don't give it your reasons. Cut or fix each line it quotes. When you can't start an agent, read the post line by line against the source and the user's messages as if someone else wrote it.
 
 ## Step 7: Deliver
 
-Give the post first, exactly as checked, ready to paste. Then, depending on the type:
+Give the post first, exactly as checked, ready to paste. For any type but text, follow it with the one line on why you picked the type. Then, depending on the type:
 
 - **Document:** the slide outline, and an offer to build the PDF.
 - **Images:** the order of the images and a one-line alt text for each.
@@ -96,6 +96,7 @@ Then short notes, one line each, only as needed:
 - Each bracket to fill.
 - Each quote, name or number to check against a transcript.
 - The source link, and the choice: leave it out of the post, or add it and accept less reach.
+- Anything in the source that looks unfinished or unreal, like a placeholder name.
 - Any warning you kept, and why.
 
 Close with two lines of posting advice from `references/platform.md`: post on a weekday and try two time slots, and stay for the first 30 minutes to answer comments. Leave out anything else unless the user asks.
