@@ -2,6 +2,15 @@
 
 Every change to this skill is logged here: what was added, changed or removed, and why. Nothing comes out without a line saying so. Newest first.
 
+## 1.2.0 · Evidence over style rules
+
+Why: 1.1.1 set aside a paragraph finding because it worked against Plainspeak Writer's style rule against one sentence per line, and 1.1.0 capped hashtags at two to match Plainspeak Writer. On October 21, 2026, the owner ruled that a style rule never outranks evidence of what works. Where `platform.md` has a finding, the skill follows it; its own choices cover only what the evidence leaves open.
+
+- Changed: paragraphs. Posts with more than 14 paragraphs did 66% better than posts with fewer than 7 in one 400,000-post dataset, so paragraphs run one or two full sentences, a new one at each new point, usually 10 to 14 in a text post. P11 warns again under 7.
+- Changed: hashtags. One to three relevant tags, following the only measure (1 to 3 gave about 9% more reach). P08 now blocks above three.
+- Added: when a Plainspeak Writer rule works against a finding, the finding wins and the warning is cleared with the finding as the reason.
+- Changed: the text-length choice now gives its evidence reason, not its fit with Plainspeak Writer.
+
 ## 1.1.1 · No paragraph-count target
 
 Why: 1.1.0 asked for 8 to 12 paragraphs and warned under 7, after one vendor dataset found posts with more than 14 paragraphs did better. In a post of 1,300 to 2,500 characters, that many paragraphs means one short sentence per line, the layout Plainspeak Writer bars as an AI tell. The owner rejected it on October 21, 2026: the finding comes from one source with a private method, and it works against a settled voice rule.

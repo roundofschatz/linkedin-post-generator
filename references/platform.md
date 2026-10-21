@@ -38,7 +38,7 @@ The last section lists the skill's own choices, which aren't findings.
 - **The fold.** The post folds behind "see more" at about 140 characters on mobile and 210 on desktop, and most reading happens on mobile. **[Data]** The point has to land in the first 140 characters.
 - **Hook type.** In a sample of about 310,000 posts (December 2025 to May 2026), story openers did best (2.60% median engagement), contrarian openers next (2.31%) and question openers worst (2.16%). The gaps are small and only three types were compared. **[Data, secondary, via Ordinal]**
 - **Length.** In a study of about 370,000 posts, posts of 1,300 to 2,500 characters drew 2.61% to 2.67% median engagement, against 2.10% for posts under 400. The sample is AuthoredUp's own users. The limit is 3,000 characters. **[Data]**
-- **Paragraphs.** In one dataset of about 400,000 posts, posts with fewer than 7 paragraphs did 66% worse than posts with more than 14, and posts whose words averaged more than 5 letters did 40% worse. **[Data, one source]**
+- **Paragraphs.** In one dataset of about 400,000 posts, posts with fewer than 7 paragraphs did 66% worse than posts with more than 14, and posts whose words averaged more than 5 letters did 40% worse. **[Data, one source]** So: paragraphs of one or two full sentences, a new one at each new point, and plain, short words.
 - **Comments.** LinkedIn's ranker predicts comments as their own outcome. **[LinkedIn]** Claims such as "a comment is worth 15 likes" have no published method. **[Opinion]** LinkedIn is cutting low-value and automated comments, so the close should invite a real answer: a specific question, or a position people will want to add to or push back on. **[LinkedIn + report advice]**
 - **Saves.** Reference posts such as checklists, frameworks and data tables are worth making for saves; the claim that a save is worth five likes is unconfirmed. **[Opinion and secondary data]**
 - **Replying.** Writers who replied within 30 minutes got about 64% more comments and 2.3 times the views. **[Data, as reported]** The report's advice: stay 30 to 60 minutes and reply properly to every serious comment.
@@ -79,13 +79,12 @@ The last section lists the skill's own choices, which aren't findings.
 
 ## The skill's own choices
 
-These rules aren't findings. Each is a choice the skill makes, with its reason.
+These rules aren't findings. Each is a choice the skill makes, with its reason. Where evidence exists, the skill follows it, even when another skill's style rule says otherwise; these choices cover only what the evidence leaves open.
 
-- **Text post length, 1,300 to 1,900 characters, aiming for 1,500 to 1,700.** The bottom of the research range, so it also fits Plainspeak Writer's LinkedIn range of 150 to 300 words.
-- **Paragraphs of one to three full sentences, with no paragraph-count target.** One vendor dataset found posts with more than 14 paragraphs beat posts with fewer than 7. In a 1,300 to 2,500 character post, 14 paragraphs means one short sentence per line, so the finding measures that layout. It comes from one source with a private method, and the layout is the one Plainspeak Writer bars as an AI tell, so the skill doesn't follow it.
+- **Text post length, 1,300 to 1,900 characters, aiming for 1,500 to 1,700.** Inside the 1,300 to 2,500 range that did best, where engagement was about the same throughout (2.61% to 2.67%); the lower half keeps the post quick to read.
 - **Text over a document, images, a poll or a video: 150 to 1,300 characters.** No research covers this. The media holds the content, so the text stays shorter than a text post.
 - **A post sharing the writer's own work keeps its link.** The research says a link costs reach. When the post exists to send readers to the work, the skill counts the clicks as worth that cost, removes the preview card to keep the cost lower, and offers a document post as the other route.
-- **Hashtags: none by default, at most two.** Inside the report's 0 to 3; two matches Plainspeak Writer's cap.
+- **Hashtags: one to three.** The only measure (weak, method unpublished) found 1 to 3 relevant tags helped; the skill follows it and caps at three, where the report's safer reading ends.
 - **Text is the default type** unless the material is a framework, steps or a set of images, because a document needs material that fills slides.
 - **Bait beyond LinkedIn's named examples** ("Thoughts?", "Agree?", "follow for more", "tag someone"): warned, because Plainspeak Writer bars them and the report's template rules out "Agree?".
 - **Opening greetings and setups** ("Happy Monday," "I've been thinking"): warned, because they spend the 140 characters before the fold.

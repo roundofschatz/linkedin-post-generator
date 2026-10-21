@@ -10,7 +10,7 @@
 The check reads the post as LinkedIn shows it: the character count includes
 spaces and line breaks, and the opening is the first line a reader sees
 before "see more". It finds surface patterns only: length, the opening,
-hashtags, links and engagement bait. Whether the
+paragraph count, hashtags, links and engagement bait. Whether the
 post says something worth reading is the edit's job, not this script's.
 
 HARD rules block the post. WARN rules stay only with a stated reason.
@@ -26,7 +26,7 @@ import re
 import sys
 from pathlib import Path
 
-__version__ = "1.1.1"
+__version__ = "1.2.0"
 
 # Limits and targets. Each number is in references/platform.md, as a
 # finding with its source or in "The skill's own choices".
@@ -38,7 +38,8 @@ SHORT_RANGE = (150, 1300)  # skill's choice: text over a document, images, a pol
 POLL_QUESTION = 140        # LinkedIn's limits
 POLL_OPTION = 30
 POLL_OPTIONS = (2, 4)
-HASHTAG_MAX = 2            # skill's choice, inside the report's 0-3
+HASHTAG_MAX = 3            # 1-3 relevant tags helped in one measure
+MIN_PARAGRAPHS = 7         # posts with fewer than 7 paragraphs did 66% worse (one dataset)
 MENTION_MAX = 3            # skill's choice
 
 TYPES = ("text", "share", "document", "images", "poll", "video")
@@ -56,7 +57,8 @@ RULES = [
     rule("P05", "WARN", "greeting or setup opener", "spend the first 140 characters on the point"),
     rule("P06", "WARN", "opens on a question", "open on a short story or a claim; question openers did worst in 2026 data"),
     rule("P07", "HARD", "engagement bait LinkedIn named", "end on a position or a specific question about a named case"),
-    rule("P08", "HARD", "more than two hashtags", "use none, or up to two that name the exact subject or a real community"),
+    rule("P08", "HARD", "more than three hashtags", "use one to three that name the exact subject or a real community"),
+    rule("P11", "WARN", "fewer than 7 paragraphs", "start a new paragraph at each new point, one or two full sentences each"),
     rule("P09", "WARN", "hashtag inside a sentence", "put hashtags on the last line"),
     rule("P10", "WARN", "link in the post", "ask the writer: keep it and accept the reach cost, or leave it out"),
     rule("P12", "WARN", "arrow or emoji bullets", "write the points as sentences, or as a plain list"),
@@ -187,6 +189,10 @@ def check(text, post_type="text", link_ok=False, poll=None, skip=()):
         hit("P13", f"line {line_no(body, m.start())}", snippet(body[max(0, m.start() - 10): m.start() + 30]))
     for m in NOT_X_Y.finditer(body):
         hit("P14", f"line {line_no(body, m.start())}", snippet(m.group(0)))
+    if post_type in ("text", "share"):
+        prose = [p for p in paras if not re.fullmatch(r"(?:\s*#[A-Za-z]\w*[\s,]*)+", p) and not URL.fullmatch(p)]
+        if len(prose) < MIN_PARAGRAPHS:
+            hit("P11", "-", f"{len(prose)} paragraphs")
     mentions = MENTION.findall(body)
     if len(mentions) > MENTION_MAX:
         hit("P16", "-", f"{len(mentions)} mentions")

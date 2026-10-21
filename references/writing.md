@@ -8,7 +8,7 @@ Plainspeak Writer does the sentence work best. Without it, follow these rules wh
 - Every claim lands on a name, a number, a place or a result the writer gave. A sentence any copywriter could have written about any company gets rewritten with a detail, or cut.
 - Take a position and say it once, flat. Don't hedge it, and don't repeat it in new words.
 - Meet the strongest objection with the writer's own evidence.
-- Short paragraphs of one to three full sentences. Each sentence picks up the one before it.
+- Short paragraphs of one or two full sentences, a new one at each new point. Each sentence picks up the one before it.
 - Keep the writer's facts at the size they gave them. "I ran a survey of 200" doesn't become "I led the research."
 
 ## Cut these

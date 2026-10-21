@@ -79,8 +79,13 @@ class Hashtags(unittest.TestCase):
         found = ids(good_post() + "\n\n#Onboarding #HRTech")
         self.assertFalse({"P08", "P09"} & found)
 
-    def test_three_block(self):
-        self.assertIn("P08", ids(good_post() + "\n\n#A #B #C"))
+    def test_three_pass_four_block(self):
+        self.assertNotIn("P08", ids(good_post() + "\n\n#A #B #C"))
+        self.assertIn("P08", ids(good_post() + "\n\n#A #B #C #D"))
+
+    def test_few_paragraphs_warn(self):
+        self.assertIn("P11", ids(PARA + "\n\n" + PARA))
+        self.assertNotIn("P11", ids(good_post()))
 
     def test_inline_warns(self):
         self.assertIn("P09", ids("We fixed #onboarding in a week.\n\n" + PARA))
