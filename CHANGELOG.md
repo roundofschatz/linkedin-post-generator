@@ -2,6 +2,14 @@
 
 Every change to this skill is logged here: what was added, changed or removed, and why. Nothing comes out without a line saying so. Newest first.
 
+## 1.2.1 · The writer's tone, built out with the tactics
+
+Why: on October 21, 2026, the owner rewrote a post the skill drafted. The rewrite was more human, and the skill's earlier drafts had flattened his voice. He ruled that the skill should match the tone of voice it receives, and build it out with the tactics a high-quality post needs, rather than replace it or leave it untouched.
+
+- Added: Step 5's tone rule. The skill matches the writer's words, phrasing, rhythm and formality, including choices a style rule would flag, and writes what each tactic needs (the fold, length, paragraphs, close, link, hashtags) in that style. It fixes errors, flags style questions in the notes, and makes the smallest change that meets a tactic.
+- Changed: `tests/cases/share-own-work.md` checks the same.
+- Changed: the checker's version to 1.2.1.
+
 ## 1.2.0 · Evidence over style rules
 
 Why: 1.1.1 set aside a paragraph finding because it worked against Plainspeak Writer's style rule against one sentence per line, and 1.1.0 capped hashtags at two to match Plainspeak Writer. On October 21, 2026, the owner ruled that a style rule never outranks evidence of what works. Where `platform.md` has a finding, the skill follows it; its own choices cover only what the evidence leaves open.

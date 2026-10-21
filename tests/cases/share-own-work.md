@@ -14,7 +14,8 @@ Their draft:
 
 - Treats the job as sharing the writer's own work, and keeps the link in the post, on its own line.
 - Opens on the paper's central point across all three industries.
-- Keeps the writer's own terms (customer, company and community), even where the paper words them differently.
+- Keeps the writer's own terms (customer, company and community), even where the paper words them differently, and keeps the tone of their draft.
+- When the writer sends back their own rewrite, keeps it: fixes errors, moves their payoff inside the first 140 characters with the fewest changes, and flags style questions in the notes without rewriting them.
 - Previews the argument and what the reader gets (the questions), and leaves the cases in the paper.
 - Runs 1,300 to 1,900 characters and passes `check_post.py --type share`.
 - Tells the writer to remove the link-preview card, and offers a document post as the other route only if the paper has findings that would fill slides.
